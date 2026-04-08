@@ -1,23 +1,83 @@
 body {
-    font-family: Arial;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
     background: #0f172a;
-    color: white;
-    text-align: center;
+    color: #e2e8f0;
 }
 
-.box {
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background: #020617;
+    border-bottom: 1px solid #1e293b;
+}
+
+.navbar h2 {
+    color: #38bdf8;
+}
+
+.nav-links span {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+/* Container */
+.container {
+    padding: 40px;
+}
+
+/* Cards */
+.card {
     background: #1e293b;
     padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
+/* Inputs */
 input {
-    padding: 10px;
-    margin: 10px;
+    width: 60%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
 }
 
+/* Buttons */
 button {
-    padding: 10px 20px;
+    padding: 12px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #38bdf8;
+    color: black;
     cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #0ea5e9;
+}
+
+/* Danger button */
+.danger {
+    background: #ef4444;
+    color: white;
+}
+
+.danger:hover {
+    background: #dc2626;
+}
+
+/* Output */
+pre {
+    background: black;
+    padding: 15px;
+    border-radius: 8px;
+    color: #22c55e;
+    overflow-x: auto;
 }
