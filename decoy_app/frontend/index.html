@@ -1,41 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>SecureCorp Portal</title>
-    <link rel="stylesheet" href="style.css">
-<script src="./script.js"></script>
+<meta charset="UTF-8">
+<title>SecureCorp Portal</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
 
+<body>
 <div class="navbar">
-    <h2>SecureCorp</h2>
-    <div class="nav-links">
-        <span>Dashboard</span>
-        <span>Users</span>
-        <span>Security</span>
-    </div>
+<h2>SecureCorp</h2>
 </div>
 
 <div class="container">
 
-    <h1>Employee Access Portal</h1>
+<h1>Employee Access Portal</h1>
 
-    <div class="card">
-        <h3>User Lookup</h3>
-        <input type="text" id="username" placeholder="Enter employee name">
-        <button onclick="getUser()">Search</button>
-    </div>
+<input id="username" placeholder="Enter name">
+<button onclick="getUser()">Search</button>
 
-    <div class="card">
-        <h3>Admin Panel</h3>
-        <button class="danger" onclick="goAdmin()">Open Admin Console</button>
-    </div>
+<button onclick="goAdmin()">Admin</button>
 
-    <div class="card">
-        <h3>System Response</h3>
-        <pre id="output">No data yet...</pre>
-    </div>
+<pre id="output"></pre>
 
 </div>
 
