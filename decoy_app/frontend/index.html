@@ -1,29 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>SecureCorp Portal</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureCorp Enterprise Portal</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<div class="navbar">
-<h2>SecureCorp</h2>
-</div>
+  <header class="navbar">
+    <div class="brand">SecureCorp</div>
+    <div class="tag">Enterprise Operations Portal</div>
+  </header>
 
-<div class="container">
+  <main class="layout">
+    <section class="panel">
+      <h1>Employee & System Access</h1>
+      <p class="subtitle">Decoy environment for controlled security testing.</p>
 
-<h1>Employee Access Portal</h1>
+      <label for="username">User Lookup</label>
+      <div class="controls">
+        <input id="username" placeholder="e.g. admin" autocomplete="off">
+        <button id="lookupBtn">Fetch User</button>
+      </div>
 
-<input id="username" placeholder="Enter name">
-<button onclick="getUser()">Search</button>
+      <div class="controls stacked">
+        <button id="adminBtn" class="danger">Open Admin Panel</button>
+        <button id="metricsBtn" class="secondary">View Metrics</button>
+      </div>
+    </section>
 
-<button onclick="goAdmin()">Admin</button>
+    <section class="panel viewer">
+      <h2>Response Viewer</h2>
+      <p class="subtitle">Live API response output for demos.</p>
+      <pre id="output">Ready. Run an action to inspect backend responses.</pre>
+    </section>
+  </main>
 
-<pre id="output"></pre>
-
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
