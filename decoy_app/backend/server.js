@@ -1,40 +1,25 @@
 const express = require('express');
-const { Pool } = require('pg');
+const logger = require('./middleware/logger');
+const { track } = require('./controllers/metricsController');
+
+const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const metricsRoutes = require('./routes/metricsRoutes');
 
 const app = express();
 
-const pool = new Pool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: 'testdb',
-});
-
 app.use(express.json());
+app.use(logger);
+app.use(track);
 
-// 🔥 SQL Injection Vulnerability
-app.get('/user', async (req, res) => {
-    const name = req.query.name;
+app.use('/user', userRoutes);
+app.use('/admin', adminRoutes);
+app.use('/metrics', metricsRoutes);
 
-    try {
-        const query = `SELECT * FROM users WHERE name = '${name}'`;
-        const result = await pool.query(query);
-        res.json(result.rows);
-    } catch (err) {
-        res.send(err.toString());
-    }
-});
-
-// 🔥 No Authentication
-app.get('/admin', (req, res) => {
-    res.send("🔥 Welcome Admin Panel (No Auth)");
-});
-
-// Normal route
 app.get('/', (req, res) => {
-    res.send("Decoy Backend Running");
+    res.send("SecureCorp Backend Running");
 });
 
 app.listen(3000, () => {
-    console.log("Backend running on port 3000");
+    console.log("🚀 Backend running on port 3000");
 });
