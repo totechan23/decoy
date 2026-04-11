@@ -3,33 +3,47 @@ version: '3.8'
 services:
   nginx:
     image: nginx:latest
+    container_name: decoy-nginx
     ports:
-      - "80:80"
+      - '80:80'      # intentionally exposed
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./frontend:/usr/share/nginx/html:ro
     depends_on:
       - backend
+    networks:
+      - decoy_net
 
   backend:
     build: ./backend
+    container_name: decoy-backend
     ports:
-      - "3000:3000"
+      - '3000:3000'  # intentionally exposed
     environment:
-      - DB_HOST=db
-      - DB_USER=admin
-      - DB_PASS=admin123
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: admin
+      DB_PASS: admin123
+      DB_NAME: testdb
     depends_on:
       - db
+    networks:
+      - decoy_net
 
   db:
     image: postgres:13
+    container_name: decoy-db
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin123
       POSTGRES_DB: testdb
     ports:
-      - "5432:5432"
+      - '5432:5432'  # intentionally exposed
     volumes:
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-      
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - decoy_net
+
+networks:
+  decoy_net:
+    driver: bridge
